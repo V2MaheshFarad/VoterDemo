@@ -1,0 +1,72 @@
+﻿@model IEnumerable<VoterDemo.Models.voterModel>
+<script>
+    $(document).ready(function () {
+    });
+</script>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.voter_id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.firstname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.lastname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.middlename)
+        </th>
+          <th style="display:none">
+            @Html.DisplayNameFor(model => model.WardId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WardName)
+        </th>
+        <th style="display:none">
+            @Html.DisplayNameFor(model => model.AreaId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AreaName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.voter_id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.firstname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.lastname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.middlename)
+        </td>
+        <td style="display:none">
+            @Html.DisplayFor(modelItem => item.WardId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WardName)
+        </td>
+        <td style="display:none">
+            @Html.DisplayFor(modelItem => item.AreaId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AreaName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.voter_id }) |
+            @Html.ActionLink("Details", "Details", new { id = item.voter_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.voter_id })
+        </td>
+    </tr>
+}
+
+</table>
+@Html.ActionLink("Export to Excel", "Excel")
+@Html.ActionLink("Create New", "AddVoter")

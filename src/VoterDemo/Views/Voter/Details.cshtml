@@ -1,0 +1,66 @@
+﻿@model VoterDemo.Models.voterModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>voterModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.voter_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.voter_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.firstname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.firstname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.lastname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.lastname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.middlename)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.middlename)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WardName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WardName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AreaName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AreaName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.voter_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

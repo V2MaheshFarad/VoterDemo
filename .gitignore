@@ -226,3 +226,17 @@ pip-log.txt
 src/VoterDemo/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
 src/VoterDemo/obj/Debug/VoterDemo.csproj.FileListAbsolute.txt
 src/VoterDemo/obj/Debug/VoterDemo.csprojResolveAssemblyReference.cache
+*.dll
+*.txt
+*.pdb
+*.suo
+*.pdb
+*.dll
+*.txt
+src/VoterDemo/obj/Debug/VoterDemo.pdb
+src/VoterDemo/obj/Debug/VoterDemo.pdb
+src/VoterDemo/obj/Debug/VoterDemo.csproj.FileListAbsolute.txt
+src/VoterDemo/bin/VoterDemo.pdb
+src/VoterDemo/bin/VoterDemo.dll
+src/VoterDemo.v12.suo
+src/VoterDemo/obj/Debug/VoterDemo.pdb

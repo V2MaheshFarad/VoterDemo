@@ -51,6 +51,35 @@ namespace VoterDemo.DAL
 
             return VoterList.ToList();
         }
+
+        public List<voterModel> GetallVoterWithDeleted()
+        {
+            List<voterModel> VoterList = new List<voterModel>();
+            var projectList = getvoters();
+            if (projectList.Tables.Count > 0)
+            {
+                DataTable table = projectList.Tables[0];
+
+                foreach (DataRow record in table.Rows)
+                {
+                        VoterList.Add(new voterModel()
+                        {
+                            AreaId = Convert.ToInt32(record["AreaId"]),
+                            firstname = Convert.ToString(record["firstname"]),
+                            lastname = Convert.ToString(record["lastname"]),
+                            middlename = Convert.ToString(record["middlename"]),
+                            voter_id = Convert.ToString(record["voter_id"]),
+                            WardId = Convert.ToInt32(record["WardId"]),
+                            WardName = Convert.ToString(record["WardName"]),
+                            AreaName = Convert.ToString(record["AreaName"])
+                        });
+                   
+                }
+            }
+
+            return VoterList.ToList();
+        }
+
         public DataSet getvoters()
         {
             SqlConnection con = new SqlConnection(connectionString);

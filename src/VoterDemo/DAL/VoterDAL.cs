@@ -25,10 +25,10 @@ namespace VoterDemo.DAL
                 foreach (DataRow record in table.Rows)
                 {
                     if (record["isdeleted"] == DBNull.Value)
-                    { 
+                    {
                         // nothing to do  
                     }
-                    else if (Convert.ToInt32(record["isdeleted"])==1)
+                    else if (Convert.ToInt32(record["isdeleted"]) == 1)
                     {
                         // nothing to do  
                     }
@@ -42,8 +42,8 @@ namespace VoterDemo.DAL
                             middlename = Convert.ToString(record["middlename"]),
                             voter_id = Convert.ToString(record["voter_id"]),
                             WardId = Convert.ToInt32(record["WardId"]),
-                            WardName=Convert.ToString(record["WardName"]),
-                            AreaName=Convert.ToString(record["AreaName"])
+                            WardName = Convert.ToString(record["WardName"]),
+                            AreaName = Convert.ToString(record["AreaName"])
                         });
                     }
                 }

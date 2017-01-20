@@ -25,24 +25,27 @@ namespace VoterDemo.Controllers
         [HttpPost]
         public ActionResult AddVoter(voterModel voter)
         {
-            VoterDAL DAL = new VoterDAL();
-            List<voterModel> voters = new List<voterModel>();
-            voterModel vt1 = new voterModel();
-            vt1 = DAL.GetallVoter().Find(x => x.voter_id == voter.voter_id);
-
-            List<voterModel> VoterCheck = DAL.GetvoterbyID(voter.voter_id);
-            if (vt1==null)
+            if (ModelState.IsValid)
             {
-                DAL.Addvoter(voter);
-                return RedirectToAction("Index", "Voter");
-            }
-            else
-            {
-                ModelState.AddModelError("", "VoterID Is Already Exists ");
-                return View(voter);
+                VoterDAL DAL = new VoterDAL();
+                List<voterModel> voters = new List<voterModel>();
+                voterModel vt1 = new voterModel();
+                vt1 = DAL.GetallVoterWithDeleted().Find(x => x.voter_id == voter.voter_id);
 
-            }
+                List<voterModel> VoterCheck = DAL.GetvoterbyID(voter.voter_id);
+                if (vt1 == null)
+                {
+                    DAL.Addvoter(voter);
+                    return RedirectToAction("Index", "Voter");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "VoterID Is Already Exists ");
+                    return View(voter);
 
+                }
+            }
+            return View(voter);
         }
 
         public ActionResult Edit(string id)

@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<VoterDemo.Models.voterModel>
 <script>
-    $(document).ready(function () {
-    });
+    //$(document).ready(function () {
+    //});
 </script>
 
 <table class="table">
@@ -10,13 +10,7 @@
             @Html.DisplayNameFor(model => model.voter_id)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.firstname)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.lastname)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.middlename)
+            @Html.DisplayNameFor(model => model.Fullname)
         </th>
           <th style="display:none">
             @Html.DisplayNameFor(model => model.WardId)
@@ -39,13 +33,7 @@
             @Html.DisplayFor(modelItem => item.voter_id)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.firstname)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.lastname)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.middlename)
+            @Html.DisplayFor(modelItem => item.Fullname)
         </td>
         <td style="display:none">
             @Html.DisplayFor(modelItem => item.WardId)

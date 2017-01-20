@@ -26,6 +26,7 @@ namespace VoterDemo.Models
         public int WardId { get; set; }
         [Required]
         [RegularExpression("^[0-9]*$", ErrorMessage = "Invalid AreaId")]
+        public string Fullname { get; set; }
         public int AreaId { get; set; }
         public bool isdeleted { get; set; }
         public List<voterModel> VoterList { get; set; }

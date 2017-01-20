@@ -37,6 +37,7 @@ namespace VoterDemo.DAL
                         VoterList.Add(new voterModel()
                         {
                             AreaId = Convert.ToInt32(record["AreaId"]),
+                            Fullname = Convert.ToString(record["lastname"]) + " " + Convert.ToString(record["firstname"]) + " " + Convert.ToString(record["middlename"]),
                             firstname = Convert.ToString(record["firstname"]),
                             lastname = Convert.ToString(record["lastname"]),
                             middlename = Convert.ToString(record["middlename"]),
@@ -62,18 +63,18 @@ namespace VoterDemo.DAL
 
                 foreach (DataRow record in table.Rows)
                 {
-                        VoterList.Add(new voterModel()
-                        {
-                            AreaId = Convert.ToInt32(record["AreaId"]),
-                            firstname = Convert.ToString(record["firstname"]),
-                            lastname = Convert.ToString(record["lastname"]),
-                            middlename = Convert.ToString(record["middlename"]),
-                            voter_id = Convert.ToString(record["voter_id"]),
-                            WardId = Convert.ToInt32(record["WardId"]),
-                            WardName = Convert.ToString(record["WardName"]),
-                            AreaName = Convert.ToString(record["AreaName"])
-                        });
-                   
+                    VoterList.Add(new voterModel()
+                    {
+                        AreaId = Convert.ToInt32(record["AreaId"]),
+                        firstname = Convert.ToString(record["firstname"]),
+                        lastname = Convert.ToString(record["lastname"]),
+                        middlename = Convert.ToString(record["middlename"]),
+                        voter_id = Convert.ToString(record["voter_id"]),
+                        WardId = Convert.ToInt32(record["WardId"]),
+                        WardName = Convert.ToString(record["WardName"]),
+                        AreaName = Convert.ToString(record["AreaName"])
+                    });
+
                 }
             }
 

@@ -3,7 +3,16 @@
 @*<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>*@
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script language="Javascript" type="text/javascript">
+    $.ajaxSetup({
+        // Disable caching of AJAX responses
+        cache: false
+    });
     $(document).ready(function () {
+
+        if($("#WardName").val()==null || $("#WardName").val()=="")
+        {
+            $("#WardName").val() == "";
+        }
         $("#voter_id,#WardId,#AreaId").keydown(function (e) {
             // Allow: backspace, delete, tab, escape, enter and .
             if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
@@ -42,13 +51,12 @@
             }
         });
     });
-
 </script>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -85,18 +93,19 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.WardId, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.WardName, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.WardId, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.WardId, "", new { @class = "text-danger" })
+                @Html.DropDownListFor(model => model.WardName, new SelectList(Model.WardNameList, "WardId", "WardName", "Select"), "Select", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.WardName, "", new { @class = "text-danger" })
+                @*@Html.HiddenFor(model => model.WardName, new { id = "WardName" })*@
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.AreaId, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.AreaName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.AreaId, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.AreaId, "", new { @class = "text-danger" })
+                @Html.DropDownListFor(model => model.AreaName, new SelectList(Model.AreaList, "AreaId", "AreaName", "Select"), "Select", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.AreaName, "", new { @class = "text-danger" })
             </div>
         </div>
 

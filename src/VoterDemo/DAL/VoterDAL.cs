@@ -104,8 +104,8 @@ namespace VoterDemo.DAL
                 objParam[1] = new SqlParameter("@firstname", v.firstname);
                 objParam[2] = new SqlParameter("@middlename", v.middlename);
                 objParam[3] = new SqlParameter("@lastname", v.lastname);
-                objParam[4] = new SqlParameter("@WardId", v.WardId);
-                objParam[5] = new SqlParameter("@AreaId", v.AreaId);
+                objParam[4] = new SqlParameter("@WardId", Convert.ToInt32(v.WardName));
+                objParam[5] = new SqlParameter("@AreaId", Convert.ToInt32(v.AreaName));
 
                 SqlHelper.ExecuteNonQuery(connectionString, CommandType.StoredProcedure, "AddVoter", objParam);
             }
@@ -160,8 +160,8 @@ namespace VoterDemo.DAL
             v1.voter_id = v.voter_id;
             v1.lastname = v.lastname;
             v1.middlename = v.middlename;
-            v1.WardId = v.WardId;
-            v1.AreaId = v.AreaId;
+            v1.WardId = Convert.ToInt32(v.WardName);
+            v1.AreaId = Convert.ToInt32(v.AreaName);
             v1.firstname = v.firstname;
             EditVoters(v1);
         }
@@ -203,5 +203,79 @@ namespace VoterDemo.DAL
             }
         }
 
+
+        public List<WardNameList> GetWards()
+        {
+            List<WardNameList> WardsList = new List<WardNameList>();
+            var projectList = GetWarddetils();
+            if (projectList.Tables.Count > 0)
+            {
+                DataTable table = projectList.Tables[0];
+
+                foreach (DataRow record in table.Rows)
+                {
+                    WardsList.Add(new WardNameList()
+                    {
+                        WardId = Convert.ToInt32(record["WardId"]),
+                        WardName = Convert.ToString(record["WardName"]),
+                    });
+
+                }
+            }
+
+            return WardsList.ToList();
+        }
+
+        public List<AreaList> GetArea()
+        {
+            List<AreaList> areaList = new List<AreaList>();
+            var arList = GetAreadetils();
+            if (arList.Tables.Count > 0)
+            {
+                DataTable table = arList.Tables[0];
+
+                foreach (DataRow record in table.Rows)
+                {
+                    areaList.Add(new AreaList()
+                    {
+                        AreaId = Convert.ToInt32(record["AreaId"]),
+                        AreaName = Convert.ToString(record["AreaName"]),
+                    });
+
+                }
+            }
+
+            return areaList.ToList();
+        }
+
+        public DataSet GetWarddetils()
+        {
+            SqlConnection con = new SqlConnection(connectionString);
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "GetWardDetails";//write sp name here
+            cmd.Connection = con;
+            con.Open();
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataSet VoterData = new DataSet();
+            da.Fill(VoterData);
+            return VoterData;
+        }
+
+        public DataSet GetAreadetils()
+        {
+            SqlConnection con = new SqlConnection(connectionString);
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "GetAreaDetails";//write sp name here
+            cmd.Connection = con;
+            con.Open();
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataSet VoterData = new DataSet();
+            da.Fill(VoterData);
+            return VoterData;
+        }
     }
 }

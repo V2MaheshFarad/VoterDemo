@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using VoterDemo.Models;
 using VoterDemo.DAL;
 using VoterDemo.Helpers;
+using System.Web.UI;
 namespace VoterDemo.Controllers
 {
     public class VoterController : Controller
@@ -18,14 +19,20 @@ namespace VoterDemo.Controllers
             voters = DAL.GetallVoter();
             return View(voters);
         }
+        [HttpGet]
         public ActionResult AddVoter()
         {
-            return View();
+            VoterDAL DAL = new VoterDAL();
+            voterModel voterm = new voterModel();
+            // get data for the Area and Wards List 
+            voterm.WardNameList=DAL.GetWards();
+            voterm.AreaList = DAL.GetArea();
+            return View(voterm);
         }
         [HttpPost]
         public ActionResult AddVoter(voterModel voter)
         {
-            if (ModelState.IsValid)
+            try
             {
                 VoterDAL DAL = new VoterDAL();
                 List<voterModel> voters = new List<voterModel>();
@@ -40,20 +47,29 @@ namespace VoterDemo.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("", "VoterID Is Already Exists ");
-                    return View(voter);
-
+                   // Use OF Temp Data to Show message
+                    TempData["Message"] = "VoterID Already Exist";
+                    return RedirectToAction("Index", "Voter");
                 }
             }
-            return View(voter);
+            catch(Exception e)
+            {
+                return RedirectToAction("Index", "Voter");
+            }
         }
 
         public ActionResult Edit(string id)
         {
             VoterDAL DAL = new VoterDAL();
             List<voterModel> voters = new List<voterModel>();
+            voterModel voterm = new voterModel();
+            // get data for the Area and Wards List 
+            voterm.WardNameList = DAL.GetWards();
+            voterm.AreaList = DAL.GetArea();
             voters = DAL.GetvoterbyID(id);
             voterModel v = new voterModel();
+            v.WardNameList = voterm.WardNameList;
+            v.AreaList = voterm.AreaList;
             foreach (var k in voters)
             {
 
@@ -64,6 +80,8 @@ namespace VoterDemo.Controllers
                 v.middlename = k.middlename;
                 v.WardId = k.WardId;
                 v.AreaId = k.AreaId;
+                //v.WardName = Convert.ToString(k.WardId);
+                //v.AreaName = Convert.ToString(k.AreaId);
             }
             return View(v);
         }

@@ -32,5 +32,19 @@ namespace VoterDemo.Models
         public List<voterModel> VoterList { get; set; }
         public string WardName { get; set; }
         public string AreaName { get; set; }
+        public List<WardNameList> WardNameList { get; set; }
+        public List<AreaList> AreaList { get; set; }
+    }
+    public class WardNameList
+    {
+        public int WardId { get; set; }
+
+        public string WardName { get; set; }
+    }
+    public class AreaList
+    {
+        public int AreaId { get; set; }
+
+        public string AreaName { get; set; }
     }
 }

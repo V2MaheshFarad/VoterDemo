@@ -1,10 +1,9 @@
 ﻿@model IEnumerable<VoterDemo.Models.voterModel>
 <script>
-    //$(document).ready(function () {
-    //});
 </script>
 
 <table class="table">
+    @Html.Raw(TempData["Message"])
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.voter_id)
